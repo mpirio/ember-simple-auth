@@ -79,7 +79,9 @@ export default Mixin.create({
     this._super(...arguments);
     this.__usesApplicationRouteMixn__ = true;
 
-    this._isFastBoot = this.hasOwnProperty('_isFastBoot') ? this._isFastBoot : isFastBoot(getOwner(this));
+    if (!this.hasOwnProperty('_isFastBoot')) {
+      this._isFastBoot = isFastBoot(getOwner(this));
+    }
     this._subscribeToSessionEvents();
   },
 
